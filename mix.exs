@@ -35,6 +35,7 @@ defmodule ExCraft.MixProject do
       # hex.pm stuff
       description:  "Smart Elixir structures constructors",
       package: [
+        organization: "coingaming",
         licenses: ["Apache 2.0"],
         files: ["lib", "mix.exs", "README*", "VERSION*"],
         maintainers: ["Ilja Tkachuk aka timCF"],
