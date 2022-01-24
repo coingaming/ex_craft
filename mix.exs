@@ -4,7 +4,7 @@ defmodule ExCraft.MixProject do
   def project do
     [
       app: :ex_craft,
-      version: ("VERSION" |> File.read! |> String.trim),
+      version: version(),
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -53,6 +53,13 @@ defmodule ExCraft.MixProject do
     ]
   end
 
+  defp version do
+    case File.read("VERSION") do
+      {:ok, version} -> String.trim(version)
+      {:error, _} -> "0.0.0-development"
+    end
+  end
+
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
@@ -64,7 +71,7 @@ defmodule ExCraft.MixProject do
       {:excoveralls, "~> 0.8", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5",    only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.19",     only: [:dev, :test], runtime: false},
-      {:credo, "~> 0.9",       only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.0",       only: [:dev, :test], runtime: false},
       {:boilex, "~> 0.2",      only: [:dev, :test], runtime: false},
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
